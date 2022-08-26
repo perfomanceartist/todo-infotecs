@@ -1,15 +1,24 @@
 .App {
   height:100%;
 }
+
+.todo-list-name {
+  font-size: 30px;
+  line-height: 35px;
+  text-align: center;
+  vertical-align: center;
+  height:6%;
+  background-color: rgb(180, 192, 185);;
+}
 .todo-list-div {
   float:left;
   width:30%;
   height: 100%;
-  background-color: rgb(112, 112, 160);
+  background-color: rgb(207, 218, 212);
 }
 .todo-list {
   overflow:auto;
-  height:80%;
+  height:86%;
 }
 .todo-page-div {
   float:right;
@@ -18,20 +27,44 @@
   background-color: aqua;
 
 }
-.todo-list-name {
-  height: 10%;
-}
-.todo-add-form {
-  position:fixed;
+
+.todo-add-form-div {
+  position:relative;
   bottom:0;
-  height:10%;
-}
-.todo{
-  background-color: brown;
-  min-height:10%;
-  margin:5px;
+  height:8%;
 }
 
+
+
+
+.todo-add-input {
+  
+  border:none;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: transparent;
+  outline:none;
+  transition: 0.3s;
+  display: inline-block;
+  margin: 0 5px;
+  width:65%;
+}
+.todo-add-btn-div {
+  display:inline-block;
+  /* align-items: center; */
+  width:30%;
+}
+.todo-add-btn {
+  width:90%;
+  padding: 5px 10px;
+  border:none;
+  border-radius: 5px;
+  font-family: sans-serif;
+  color: #fff;
+  background-color: #0071f0;
+  outline:none;
+  cursor:pointer;
+  transition: 0.3s;
+}
 
 
 

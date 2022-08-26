@@ -75,12 +75,12 @@ class App extends React.Component {
                 {todoList}
             </div>
             <div className="todo-add-form-div">
-            <form className="todo-add-form" onSubmit={this.AddNew}>
-            <input className="todo-add-input" type="text" onChange={this.FormOnChange} value={this.state.newToDoVal} placeholder="Новая задача"/>
-            <div className="todo-add-btn-div">
-              <input className="todo-add-btn" type="submit" value="Добавить"/>
-            </div>
-            </form>
+              <form className="todo-add-form" onSubmit={this.AddNew}>
+                <input className="todo-add-input" type="text" onChange={this.FormOnChange} value={this.state.newToDoVal} placeholder="Новая задача"/>
+                <div className="todo-add-btn-div">
+                  <input className="todo-add-btn" type="submit" value="Добавить"/>
+                </div>
+              </form>
             </div>
             </div>
 

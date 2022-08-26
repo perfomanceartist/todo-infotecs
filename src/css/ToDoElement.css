@@ -1,0 +1,31 @@
+.todo-div div {
+    /* margin: 5px 5px;
+    height:40px; */
+    height:10%;
+    margin: 5px;
+    font-size: 16px;
+    padding: 5px 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 16px #ccc;
+    line-height: 40px;
+    
+}
+.todo-name {
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis;
+}
+.todo-done {
+    background-color:rgb(33, 196, 33);
+}
+.todo-inProcess {
+    background-color:rgb(76, 174, 231);
+    color: #fff;
+}
+
+.todo-waiting {
+    background-color:rgb(150, 147, 147);
+}
+.hidden {
+    display:none;
+}

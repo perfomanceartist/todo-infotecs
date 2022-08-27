@@ -25,10 +25,13 @@ class ToDoElement extends React.Component {
     };
 
     render () {
+        const name = this.props.name.length > 0 ? this.props.name : "Введите имя...";
     return (
         <div className="todo-div" 
             onClick={ () => {this.props.onClick(this.props.id, this.props.name, this.props.status);} } >
-            <div className={this.StatusToClassName()} > {this.props.name} </div>
+            <div className={this.StatusToClassName()} > {name} 
+            </div>
+            
         </div>
     );
     }

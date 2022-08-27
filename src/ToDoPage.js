@@ -10,14 +10,12 @@ class ToDoPage extends React.Component {
             id: this.props.id,
             updateCallback: this.props.updateCallback,
             deleteCallback: this.props.deleteCallback,
-            mode: "watching", 
-            newName: ""
+            mode: "watching"
         }
         this.ToggleDone = this.ToggleDone.bind(this);
         this.ToggleFreese = this.ToggleFreese.bind(this);
         this.Delete = this.Delete.bind(this);
         this.Update = this.Update.bind(this);
-        this.Edit = this.Edit.bind(this);
     }
     Delete() {
         this.state.deleteCallback(this.state.id);
@@ -38,16 +36,6 @@ class ToDoPage extends React.Component {
         if (this.state.status === "done") newStatus = "inProcess";
         else if (this.state.status === "inProcess") newStatus = "done";
         this.setState({status:newStatus}, this.Update);
-    }
-    Edit () {
-        if (this.state.mode === "editing") {
-            console.log("NewName: " + this.state.newName);
-            let newName = this.state.newName;
-            this.setState({name: newName, newName:""}, this.Update); //Callback
-        }
-        this.setState({
-            mode: this.state.mode === "watching" ? "editing" : "watching"
-        });
     }
     Update () {
         
@@ -90,33 +78,41 @@ class ToDoPage extends React.Component {
                 break;
         }
         
-        const header = this.state.mode === "editing" ?
-                <form >
-                    <input type="text" 
-                    autocomplete="off"
-                    name="newName" 
-                    value={this.state.newName} 
-                    onChange={(e) => { this.setState({newName: e.target.value}); } }
-                    />
-                </form>
-                : <h1> {this.state.name} </h1>   ;
+        const deleteBtnClass = this.state.id == 0 ? "hidden" : "";
 
-        const editBtnText = this.state.mode === "editing" ?
-            "Сохранить" : "Изменить";
-
+        const formArea = this.state.id != 0 ? 
+            <form onSubmit={this.Update}>
+                <textarea
+                autocomplete="off"
+                className="todo-page-textarea"
+                name="newName" 
+                value={this.state.name} 
+                placeholder="Введите имя"
+                onChange={(e) => { 
+                    let newName = e.target.value;
+                    this.setState({name:newName}, this.Update);
+                } }
+                />
+            </form>  :
+            "Выберите задачу...";
 
         return <div className="todo-page-div">
-            {header}            
-            <div className="btn-group-status">
-                <button className = {freeseBtnClass} name="freese" onClick={this.ToggleFreese}> Заморозить</button>
-                <button className = {doneBtnClass} name="done" onClick={this.ToggleDone}> Выполнить</button>
-                <button className = {unfreeseBtnClass} name="freese" onClick={this.ToggleFreese}> Разморозить</button>
-                <button className = {undoneBtnClass} name="freese" onClick={this.ToggleDone}> Не выполнено</button>
+            {/* <h1> {header} </h1>      */}
+            <div className="todo-page-textarea-div">
+                {formArea}    
             </div>
-            <div className="btn-group-actions">                
-            <button onClick={this.Edit}>{editBtnText}</button>
-            <button onClick={this.Delete}>Удалить</button>
+            
+            <div className="btn-group">
+                
+                    <button className = {"todo-page-btn " + freeseBtnClass} name="freese" onClick={this.ToggleFreese}> Заморозить</button>
+                    <button className = {"todo-page-btn " + doneBtnClass} name="done" onClick={this.ToggleDone}> Выполнить</button>
+                    <button className = {"todo-page-btn " + unfreeseBtnClass} name="freese" onClick={this.ToggleFreese}> Разморозить</button>
+                    <button className = {"todo-page-btn " + undoneBtnClass} name="freese" onClick={this.ToggleDone}> Не выполнено</button>
+                    <button className = {"todo-page-del-btn " + deleteBtnClass}  onClick={this.Delete}>Удалить</button>
+                
+                
             </div>
+            
 
         </div> 
         

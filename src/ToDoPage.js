@@ -78,9 +78,9 @@ class ToDoPage extends React.Component {
                 break;
         }
         
-        const deleteBtnClass = this.state.id == 0 ? "hidden" : "";
+        const deleteBtnClass = this.state.id === 0 ? "hidden" : "";
 
-        const formArea = this.state.id != 0 ? 
+        const formArea = this.state.id !== 0 ? 
             <form onSubmit={this.Update}>
                 <textarea
                 autocomplete="off"
@@ -97,7 +97,7 @@ class ToDoPage extends React.Component {
             "Выберите задачу...";
 
         return <div className="todo-page-div">
-            {/* <h1> {header} </h1>      */}
+            <div className="todo-page-name">Редактирование задачи</div>
             <div className="todo-page-textarea-div">
                 {formArea}    
             </div>

@@ -7,7 +7,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     let todos = [ { name: "Eat", status:"done", id: 1}, { name:"Sleep", status:"inProcess", id:2}, { name:"Repeat", status:"waiting", id:3}];
-    this.state = { todos: todos, newToDoVal : "", newId: todos.length, currentToDoName:"", currentToDoStatus:"", currentToDoId:0
+    this.state = { 
+      todos: todos, 
+      todosToShow: todos,
+      filterName: "",
+      newToDoVal : "", 
+      newId: todos.length, 
+      currentToDoName:"", 
+      currentToDoStatus:"", 
+      currentToDoId:0
     };
     this.AddNew = this.AddNew.bind(this);
     this.FormOnChange = this.FormOnChange.bind(this);
@@ -58,8 +66,17 @@ class App extends React.Component {
       currentToDoStatus: status
     });
   }
+
+  NameFiltered = (name, filterName) => name.toUpperCase().includes(filterName.toUpperCase());
+
+  UpdateFilter = (e) => {
+    this.setState({filterName: e.target.value});
+  } ;
+
   render () {
-    const todoList = this.state.todos.map( (item) => 
+    const todosToShow = this.state.todos.filter( (item) => this.NameFiltered(item.name, this.state.filterName));
+
+    const todoList = todosToShow.map( (item) => 
       
         <ToDoElement onClick={this.ClickToDo} key={item.id} id={item.id} name={item.name} status={item.status} callback={this.DeleteToDo}/>
       
@@ -69,6 +86,12 @@ class App extends React.Component {
           <div class="todo-list-div">
             <div class="todo-list-name">
                 Задачи
+            </div>
+            <div className="todo-find-form-div">
+              <form className="todo-find-form" onSubmit={() => {} }>
+                <input className="todo-find-input" type="text" onChange={this.UpdateFilter} value={this.state.filterName} placeholder="Найти задачу..."/>
+                
+              </form>
             </div>
             <div class="todo-list">
                 

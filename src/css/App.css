@@ -18,18 +18,29 @@
 }
 .todo-list {
   overflow:auto;
-  height:86%;
+  height:78%;
 }
 
 
 .todo-add-form-div {
   position:relative;
   bottom:0;
-  height:8%;
+  height:7%;
 }
 
 
-
+.todo-find-form-div {
+  height:8%;
+}
+.todo-find-input {
+  
+  border:none;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: transparent;
+  outline:none;
+  transition: 0.3s;
+  margin: 5px;
+}
 
 .todo-add-input {
   

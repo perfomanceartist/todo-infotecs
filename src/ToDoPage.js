@@ -104,11 +104,11 @@ class ToDoPage extends React.Component {
             
             <div className="btn-group">
                 
-                    <button className = {"todo-page-btn " + freeseBtnClass} name="freese" onClick={this.ToggleFreese}> Заморозить</button>
-                    <button className = {"todo-page-btn " + doneBtnClass} name="done" onClick={this.ToggleDone}> Выполнить</button>
-                    <button className = {"todo-page-btn " + unfreeseBtnClass} name="freese" onClick={this.ToggleFreese}> Разморозить</button>
-                    <button className = {"todo-page-btn " + undoneBtnClass} name="freese" onClick={this.ToggleDone}> Не выполнено</button>
-                    <button className = {"todo-page-del-btn " + deleteBtnClass}  onClick={this.Delete}>Удалить</button>
+                    <button className = {"todo-page-btn todo-page-freese-btn " + freeseBtnClass} name="freese" onClick={this.ToggleFreese}> Заморозить</button>
+                    <button className = {"todo-page-btn todo-page-done-btn " + doneBtnClass} name="done" onClick={this.ToggleDone}> Выполнить</button>
+                    <button className = {"todo-page-btn todo-page-unfreese-btn " + unfreeseBtnClass} name="freese" onClick={this.ToggleFreese}> Разморозить</button>
+                    <button className = {"todo-page-btn todo-page-undone-btn " + undoneBtnClass} name="freese" onClick={this.ToggleDone}> Не выполнено</button>
+                    <button className = {"todo-page-btn todo-page-del-btn " + deleteBtnClass}  onClick={this.Delete}>Удалить</button>
                 
                 
             </div>

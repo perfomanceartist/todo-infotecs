@@ -8,13 +8,13 @@
   text-align: center;
   vertical-align: center;
   height:6%;
-  background-color: rgb(180, 192, 185);;
+  background-color: #b48a6f;
 }
 .todo-list-div {
   float:left;
   width:30%;
   height: 100%;
-  background-color: rgb(207, 218, 212);
+  background-color: #6d513f;
 }
 .todo-list {
   overflow:auto;
@@ -35,7 +35,7 @@
   
 }
 .todo-find-input {
-  
+  color:black;
   border:none;
   border-bottom: 1px solid #e0e0e0;
   background-color: transparent;
@@ -44,6 +44,10 @@
   margin: 5% 5px;
   height: 95%;
   width:96%;
+}
+
+.todo-find-input::placeholder {
+  color:black;
 }
 
 .todo-add-input {
@@ -57,6 +61,11 @@
   margin: 0 5px;
   width:65%;
 }
+
+.todo-add-input::placeholder {
+  color:black;
+}
+
 .todo-add-btn-div {
   display:inline-block;
   /* align-items: center; */
@@ -70,12 +79,13 @@
   border-radius: 5px;
   font-family: sans-serif;
   color: #fff;
-  background-color: #0071f0;
+  background-color: #1d7776;
   outline:none;
   cursor:pointer;
   transition: 0.3s;
   height:100%;
 }
+
 
 
 

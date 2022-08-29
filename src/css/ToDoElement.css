@@ -6,7 +6,7 @@
     font-size: 16px;
     padding: 5px 5px;
     border-radius: 5px;
-    box-shadow: 0 4px 16px #ccc;
+    /* box-shadow: 0 4px 4px #ccc; */
     line-height: 40px;
     
 }
@@ -16,15 +16,16 @@
     text-overflow: ellipsis;
 }
 .todo-done {
-    background-color:rgb(33, 196, 33);
+    background-color:#8ead75;
+    text-decoration: line-through;
 }
 .todo-inProcess {
-    background-color:rgb(76, 174, 231);
+    background-color:#1d7776;
     color: #fff;
 }
 
 .todo-waiting {
-    background-color:rgb(150, 147, 147);
+    background-color:#919196;
 }
 .hidden {
     display:none;

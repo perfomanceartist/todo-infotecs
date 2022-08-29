@@ -4,13 +4,13 @@
     text-align: center;
     vertical-align: center;
     height:6%;
-    background-color: rgb(180, 192, 185);
+    background-color: #b48a6f;
   }
 .todo-page-div {
     float:right;
     width: 70%;
     height: 100%;
-    background-color: rgb(153, 160, 155);
+    background-color: #4e382a;
     position:relative;
 }
 
@@ -29,6 +29,7 @@
     height: 50%;
     font-size:26px;
     border-radius: 5px;
+    background-color: #e9bea4;
 }
 .todo-page-textarea:focus {
     outline: none;
@@ -47,24 +48,29 @@
   border:none;
   border-radius: 5px;
   font-family: sans-serif;
-  color: #fff;
-  background-color: #0071f0;
   outline:none;
   cursor:pointer;
   transition: 0.3s;
   margin: 0 5px;
   height:60%;
-  
 }
+
+.todo-page-done-btn {
+    background-color: #8ead75;
+    color:black;
+}
+.todo-page-freese-btn {
+    background-color: #919196;
+    color:black;
+}
+
+.todo-page-unfreese-btn, .todo-page-undone-btn {
+    background-color: #1d7776;
+    color:white;
+}
+
+
 .todo-page-del-btn {
-    padding: 5px 10px;
-  border:none;
-  border-radius: 5px;
-  font-family: sans-serif;
-  color: #fff;
-  outline:none;
-  cursor:pointer;
-  transition: 0.3s;
-  margin: 5px;
-  background-color: #f01000;
+  background-color: #EF3E36;
+  color: white;
 }

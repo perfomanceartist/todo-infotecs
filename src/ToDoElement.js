@@ -1,13 +1,11 @@
-import React from "react"
+import React from "react";
 import "./css/ToDoElement.css"
-class ToDoElement extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {name: this.props.name, status:this.props.status, id: this.props.id, deleteCallback: this.props.callback};
-    }
 
-    StatusToClassName = () => {
-        switch (this.props.status) {
+
+function ToDoElement(props) {
+
+    const StatusToClassName = () => {
+        switch (props.status) {
             case "inProcess":
                 return "todo-name todo-inProcess";
             case "done":
@@ -18,25 +16,18 @@ class ToDoElement extends React.Component {
                 return "error";
         }
     };
-    
-    Delete = () => {
-        this.state.deleteCallback(this.props.id);
-        //this.setState({name: this.props.name, status:this.props.status, id: this.props.id})
-    };
 
-    render () {
-        const name = this.props.name.length > 0 ? this.props.name : "Введите имя...";
+
+    const toDoName = props.name.length > 0 ? props.name : "Введите имя...";
+
     return (
-        <div className="todo-div" 
-            onClick={ () => {this.props.onClick(this.props.id, this.props.name, this.props.status);} } >
-            <div className={this.StatusToClassName()} > {name} 
-            </div>
-            
+        <div className="todo-div" onClick={ () => { props.onClick(props.id, props.name, props.status); } } >
+            <div className={StatusToClassName()} > {toDoName} </div>
         </div>
-    );
-    }
-   
+    )
 }
+
+
 ToDoElement.defaultProps = {name:"default name", status:"inProcess"};
 
 export default ToDoElement;

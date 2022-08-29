@@ -9,15 +9,10 @@ class ToDoPage extends React.Component {
             status: this.props.status,
             id: this.props.id,
             updateCallback: this.props.updateCallback,
-            deleteCallback: this.props.deleteCallback,
-            mode: "watching"
+            deleteCallback: this.props.deleteCallback
         }
-        this.ToggleDone = this.ToggleDone.bind(this);
-        this.ToggleFreese = this.ToggleFreese.bind(this);
-        this.Delete = this.Delete.bind(this);
-        this.Update = this.Update.bind(this);
     }
-    Delete() {
+    Delete = () => {
         this.state.deleteCallback(this.state.id);
         this.setState( {
             id: 0,
@@ -25,27 +20,24 @@ class ToDoPage extends React.Component {
             status: "",
         });
     }
-    ToggleFreese() {
+    ToggleFreese = () => {
         let newStatus = "";
         if (this.state.status === "waiting") newStatus = "inProcess";
         else if (this.state.status === "inProcess") newStatus = "waiting";
         this.setState({status:newStatus}, this.Update);
     }
-    ToggleDone() {
+    ToggleDone = () => {
         let newStatus = "";
         if (this.state.status === "done") newStatus = "inProcess";
         else if (this.state.status === "inProcess") newStatus = "done";
         this.setState({status:newStatus}, this.Update);
     }
-    Update () {
-        
+    Update = () => {
         const todo = {
             id:this.state.id,
             name: this.state.name,
             status: this.state.status
         };
-        console.log("Update():" );
-        console.log(todo);
         this.state.updateCallback(todo);
     }
 
@@ -107,7 +99,7 @@ class ToDoPage extends React.Component {
                     <button className = {"todo-page-btn todo-page-freese-btn " + freeseBtnClass} name="freese" onClick={this.ToggleFreese}> Заморозить</button>
                     <button className = {"todo-page-btn todo-page-done-btn " + doneBtnClass} name="done" onClick={this.ToggleDone}> Выполнить</button>
                     <button className = {"todo-page-btn todo-page-unfreese-btn " + unfreeseBtnClass} name="freese" onClick={this.ToggleFreese}> Разморозить</button>
-                    <button className = {"todo-page-btn todo-page-undone-btn " + undoneBtnClass} name="freese" onClick={this.ToggleDone}> Не выполнено</button>
+                    <button className = {"todo-page-btn todo-page-undone-btn " + undoneBtnClass} name="freese" onClick={this.ToggleDone}> В процессе</button>
                     <button className = {"todo-page-btn todo-page-del-btn " + deleteBtnClass}  onClick={this.Delete}>Удалить</button>
                 
                 

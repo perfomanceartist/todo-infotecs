@@ -17,20 +17,13 @@ class App extends React.Component {
       currentToDoStatus:"", 
       currentToDoId:0
     };
-    this.AddNew = this.AddNew.bind(this);
-    this.FormOnChange = this.FormOnChange.bind(this);
-    this.DeleteToDo = this.DeleteToDo.bind(this);
-    this.ClickToDo = this.ClickToDo.bind(this);
-    this.UpdateToDo = this.UpdateToDo.bind(this);
   }
   
 
-  FormOnChange (e) {
+  FormOnChange =  (e) => {
     this.setState({newToDoVal : e.target.value});
   }
-  UpdateToDo(todo) {
-    console.log("UpdateTodo:")
-    console.log(todo);
+  UpdateToDo = (todo) => {
     const index = this.state.todos.findIndex(item => todo.id === item.id);
     let newTodos = [...this.state.todos];
 
@@ -38,12 +31,11 @@ class App extends React.Component {
     newTodos[index].status = todo.status;
     this.setState({todos: newTodos  });
   }
-  DeleteToDo (id) {
+  DeleteToDo = (id) => {
     const list = this.state.todos.filter( (item) => item.id !== id );
-    console.log(list);
     this.setState({todos: list});
   }
-  AddNew (e) {
+  AddNew = (e) => {
     
     e.preventDefault();
     let val = this.state.newToDoVal;
@@ -54,7 +46,7 @@ class App extends React.Component {
       return { todos:list, newToDoVal: "" , newId : state.newId + 1};
     });
   }
-  ClickToDo(id, name, status) {
+  ClickToDo = (id, name, status)  =>{
     console.log({
       currentToDoId: id,
       currentToDoName: name,

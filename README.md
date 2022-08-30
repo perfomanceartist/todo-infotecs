@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# ToDo App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Приложение состоит из 3 основных компонентов.
+1) App
+2) ToDoPage
+3) ToDoElement
 
-## Available Scripts
+### Компонент App
+Компонент App содержит в себе список задач (*todo-list*), поле для поиска и поле для добавления задачи. Компонент является родительским для компонента ToDoPage. Список задач состоит из массива компонентов ToDoElement. Взаимодействие между компонентами происходит с помощью коллбеков и props. 
+Компонент App содержит три основных метода:
+  - AddNew
+  - DeleteToDo
+  - UpdateToDo
+Также компонент содержит лишь одно поле в props - *todos* - изначальный список задач.
 
-In the project directory, you can run:
+### Компонент ToDoPage
+Данный компонент служит для редактирования элементов. Содержит в себе текстовое поле для изменения имени, при изменении которого имя элемента в списке задач автоматически обновляется.
+Кроме этого, компонент содержит "панель управления" - кнопки заморозки, разморозки, выполнения задания, а также кнопку удаления задачи.
+Компонент представляет 4 основных метода:
+  - ToggleFreese
+  - ToggleDone
+  - Delete
+  - Update
+В props компонент принимает id, имя и статус задачи для редактирования, а также коллбек на удаление и на редактирование.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Компонент ToDoElement
+Данный компонент представляет собой плашку с задачей, которая может иметь имя и статус. Для служебных целей также есть id. ToDoElement не несет особой функциональной нагрузки, кроме открытия задачи в поле редактирования при клике плашки. 

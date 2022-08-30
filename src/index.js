@@ -7,7 +7,11 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App todos={ [ { name: "Eat", status:"done", id: 1},
+          { name:"Sleep", status:"inProcess", id:2},
+          { name:"Repeat", status:"waiting", id:3}
+        ] } 
+    />
   </React.StrictMode>
 );
 

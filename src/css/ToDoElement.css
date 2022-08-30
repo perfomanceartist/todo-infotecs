@@ -1,12 +1,9 @@
 .todo-div div {
-    /* margin: 5px 5px;
-    height:40px; */
     height:10%;
     margin: 5px;
     font-size: 16px;
     padding: 5px 5px;
     border-radius: 5px;
-    /* box-shadow: 0 4px 4px #ccc; */
     line-height: 40px;
     
 }

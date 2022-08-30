@@ -6,26 +6,19 @@ import './css/App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    let todos = [ { name: "Eat", status:"done", id: 1}, { name:"Sleep", status:"inProcess", id:2}, { name:"Repeat", status:"waiting", id:3}];
     this.state = { 
-      todos: todos, 
-      todosToShow: todos,
-      filterName: "",
-      newToDoVal : "", 
-      newId: todos.length, 
-      currentToDoName:"", 
-      currentToDoStatus:"", 
-      currentToDoId:0
+      todos: props.todos, // список задач
+      filterName: "", // текст, который должны содержать показываетмые задачи
+      newToDoVal : "", //текст задачи для добавления
+      newId: props.todos.length, //id для новой задачи
+      currentToDoId:0 // id выбранной для редактирования задачи
     };
   }
   
 
-  FormOnChange =  (e) => {
-    this.setState({newToDoVal : e.target.value});
-  }
   UpdateToDo = (todo) => {
     const index = this.state.todos.findIndex(item => todo.id === item.id);
-    let newTodos = [...this.state.todos];
+    const newTodos = [...this.state.todos];
 
     newTodos[index].name = todo.name;
     newTodos[index].status = todo.status;
@@ -37,42 +30,38 @@ class App extends React.Component {
   }
   AddNew = (e) => {
     
-    e.preventDefault();
-    let val = this.state.newToDoVal;
-    if (val.length === 0) return;
+    e.preventDefault(); //AddNew - действие при submit'e, поэтому необходимо избавиться от стандартной обработки
+    const val = this.state.newToDoVal;
+    if (val.length === 0) {
+      alert("Имя новой задачи не должно быть пустым!");
+      return;
+    }
     
-    this.setState(state => {
-      let list = [...state.todos, {name:val, status:"inProcess", id: state.newId + 1}];
-      return { todos:list, newToDoVal: "" , newId : state.newId + 1};
-    });
+    const list = [...this.state.todos, {name:val, status:"inProcess", id: this.state.newId + 1}];
+    this.setState( {todos:list, newToDoVal: "" , newId : this.state.newId + 1 } );
   }
-  ClickToDo = (id, name, status)  =>{
-    console.log({
-      currentToDoId: id,
-      currentToDoName: name,
-      currentToDoStatus: status
-    });
-    this.setState({
-      currentToDoId: id,
-      currentToDoName: name,
-      currentToDoStatus: status
-    });
-  }
-
-  NameFiltered = (name, filterName) => name.toUpperCase().includes(filterName.toUpperCase());
-
-  UpdateFilter = (e) => {
-    this.setState({filterName: e.target.value});
-  } ;
-
+  
   render () {
-    const todosToShow = this.state.todos.filter( (item) => this.NameFiltered(item.name, this.state.filterName));
+    const NameFiltered = (name, filterName) => name.toUpperCase().includes(filterName.toUpperCase());
+    const todosToShow = this.state.todos.filter( (item) => NameFiltered(item.name, this.state.filterName));
 
     const todoList = todosToShow.map( (item) => 
       
-        <ToDoElement onClick={this.ClickToDo} key={item.id} id={item.id} name={item.name} status={item.status} callback={this.DeleteToDo}/>
+        <ToDoElement  onClick={ (id)  => this.setState({ currentToDoId: id }) }  // Для props ToDoPage;
+                      key={item.id} 
+                      id={item.id} 
+                      name={item.name} 
+                      status={item.status} 
+                      callback={this.DeleteToDo}
+        />
       
     );
+
+    let currentToDo = this.state.todos.find(todo => todo.id === this.state.currentToDoId);
+    if (currentToDo === undefined) {
+      currentToDo = {"id":0, 'name':"", "status" :""};
+    }
+
       return (
         <div className="App">
           <div class="todo-list-div">
@@ -81,17 +70,25 @@ class App extends React.Component {
             </div>
             <div className="todo-find-form-div">
               <form className="todo-find-form" onSubmit={() => {} }>
-                <input className="todo-find-input" type="text" onChange={this.UpdateFilter} value={this.state.filterName} placeholder="Найти задачу..."/>
-                
+                <input  className="todo-find-input" 
+                        type="text" 
+                        onChange={ (e) => this.setState({filterName: e.target.value}) } 
+                        value={this.state.filterName} 
+                        placeholder="Найти задачу..."
+                />
               </form>
             </div>
             <div class="todo-list">
-                
                 {todoList}
             </div>
             <div className="todo-add-form-div">
               <form className="todo-add-form" onSubmit={this.AddNew}>
-                <input className="todo-add-input" type="text" onChange={this.FormOnChange} value={this.state.newToDoVal} placeholder="Новая задача"/>
+                <input  className="todo-add-input" 
+                        type="text" 
+                        onChange={(e) => this.setState({newToDoVal : e.target.value}) } 
+                        value={this.state.newToDoVal} 
+                        placeholder="Новая задача"
+                />
                 <div className="todo-add-btn-div">
                   <input className="todo-add-btn" type="submit" value="Добавить"/>
                 </div>
@@ -99,10 +96,10 @@ class App extends React.Component {
             </div>
             </div>
 
-            <ToDoPage key={this.state.currentToDoId} 
-                name={this.state.currentToDoName} 
-                status={this.state.currentToDoStatus} 
-                id={this.state.currentToDoId}
+            <ToDoPage key={currentToDo.id} 
+                name={currentToDo.name} 
+                status={currentToDo.status} 
+                id={currentToDo.id}
                 updateCallback={this.UpdateToDo}
                 deleteCallback={this.DeleteToDo}
             />
@@ -112,9 +109,5 @@ class App extends React.Component {
   }
   
 };
-
-
-
-
-
+App.defaultProps = {todos: []};
 export default App;
